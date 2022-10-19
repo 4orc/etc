@@ -1,5 +1,4 @@
 MAKEFLAGS += --silent   
-#MAKEFLAGS += --no-print-directory
 SHELL=/bin/bash
 R=$(shell dirname $(shell git rev-parse --show-toplevel))
 
@@ -10,11 +9,13 @@ help: ## show help
 
 install: dotfiles tools 
 
-tools: $R/etc $R/readme $R/data 
+tools: $R/etc $R/4all $R/4near $R/4readme $R/4starters $R/data
 
-$R/readme:; cd $R; git clone https://github.com/burn/readme
-$R/data  :; cd $R; git clone https://github.com/burn/data
-
+$R/4all      :; cd $R; git clone https://github.com/burn/4all
+$R/4near     :; cd $R; git clone https://github.com/burn/4near
+$R/4readme   :; cd $R; git clone https://github.com/burn/4readme
+$R/4starters :; cd $R; git clone https://github.com/burn/4starters
+$R/data      :; cd $R; git clone https://github.com/burn/data
 
 dotfiles: vims  ## install all 
 	mkdir -p    $(HOME)/.config/ranger
