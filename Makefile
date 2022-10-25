@@ -11,11 +11,11 @@ install: dotfiles tools
 
 tools: $R/etc $R/4all $R/4near $R/4readme $R/4starters $R/data
 
-$R/4all      :; cd $R; git clone https://github.com/burn/4all
-$R/4near     :; cd $R; git clone https://github.com/burn/4near
-$R/4readme   :; cd $R; git clone https://github.com/burn/4readme
-$R/4starters :; cd $R; git clone https://github.com/burn/4starters
-$R/data      :; cd $R; git clone https://github.com/burn/data
+$R/4all      :; cd $R; git clone https://github.com/4orc/4all
+$R/4near     :; cd $R; git clone https://github.com/4orc/4near
+$R/4readme   :; cd $R; git clone https://github.com/4orc/4readme
+$R/4starters :; cd $R; git clone https://github.com/4orc/4starters
+$R/data      :; cd $R; git clone https://github.com/4orc/data
 
 dotfiles: vims  ## install all 
 	mkdir -p    $(HOME)/.config/ranger
@@ -36,7 +36,7 @@ itso: ## commit to Git. To add a message, set `y=message`.
 	git  commit -am "$y"; git  push ; git status    
 
 define red
-  echo -e "\ncd \033[31;1;4m$1\033[0m; $2"
+  printf  "cd \033[31;1;4m$1\033[0m; $2. "
 endef
 
 add:;    cd $R; for i in *; do (cd $$i; $(call red,$$i,pull);   $(MAKE) itso; )                done
